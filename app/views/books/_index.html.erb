@@ -23,14 +23,14 @@
 
            <td>
               <%= link_to book_favorites_path(book), method: :delete do %>
-              <i class="far fa-heart"></i>
+              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
               <%= book.favorites.count %>
               <% end %>
             </td>
             <% else %>
             <td>
               <%= link_to book_favorites_path(book), method: :post do %>
-              <i class="far fa-heart"></i>
+              <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
               <%= book.favorites.count %>
               <% end %>
             </td>
