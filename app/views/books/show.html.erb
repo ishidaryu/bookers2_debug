@@ -23,8 +23,33 @@
             <% if @user == current_user %>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
             <% end %>
+            <td>
+              <td>コメント件数：<%= @book.book_comments.count %></td>
+              <% @book.book_comments.each do |book_comment| %>
+
+             <%= book_comment.user.name %>
+             <%= book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %>
+             </td>
+        <td>
+
+             <% if book_comment.user == current_user %>
+             <%= link_to "削除", books_path(book_comment.book, book_comment), method: :delete  %>
+             <% end %>
+
+       </td>
+             <% end %>
+　　　　　　</td>
 
         </tr>
+
+            <td>
+            <%= form_with model: [@book, @book_comment] do |f| %>
+            <%= f.text_area :comment, rows: '5', placeholder: "" %>
+            <%= f.submit "送信する" %>
+            <% end %>
+            </td>
+
+
       </table>
     </div>
   </div>
