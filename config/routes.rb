@@ -14,6 +14,7 @@ root to: "homes#top"
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'gollowers' => 'relationships#followers', as: 'followers'
   end
+  get "search" => "serachs#search"
 
 
 
