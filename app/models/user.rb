@@ -13,26 +13,26 @@ class User < ApplicationRecord
 
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  
+
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  
-  
+
+
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
-  
-  def follow(user_id)
-    relationships.create(followd_id: user_id)
+
+  def follow(user)
+    relationships.create(followed_id: user.id)
   end
-  
-  def unfollow(user_id)
-    relationships.find_by(followed_id: user_id).destroy
+
+  def unfollow(user)
+    relationships.find_by(followed_id: user.id).destroy
   end
-  
+
   def following?(user)
     followings.include?(user)
   end
-  
+
 
 end
